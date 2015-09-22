@@ -1,3 +1,13 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
-<!-- add formatted_price -->
+<h1>Products (<%= @products.length %>)</h1>
+<%= link_to "Add a Product", "/products/new" %>
+
+<% @products.each do |product| %>
+
+  <div class="product">
+    <p><%= link_to product.name, product_path(product.id) %></p>
+    <p><%= word_wrap(product.description.first(50), line_width: 20) %></p>
+    <p><%= product.formatted_price %></p>
+    <p><%= image_tag(product.image, height: '100', width: '100') %></p>
+    </br></br>
+  </div>
+<% end %>
